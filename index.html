@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eco-Visual Routine Assistant App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="tablet-frame">
+      <header class="top-app-bar">
+        <div>
+          <p class="eyebrow">NASOM Kuantan</p>
+          <h1>Eco-Visual Routine Assistant App</h1>
+        </div>
+        <div class="top-status">
+          <div id="mode-badge" class="mode-badge">Choose Account</div>
+          <button id="logout-button" class="logout-button hidden" type="button">Log Out</button>
+        </div>
+      </header>
+
+      <main class="app-main">
+        <section id="login" class="screen active-screen login-screen" aria-labelledby="login-title">
+          <div class="login-panel">
+            <p class="eyebrow">Secure prototype access</p>
+            <h2 id="login-title">Who is using the app?</h2>
+            <p class="helper-text">Choose one account type. Student and teacher accounts stay separate.</p>
+
+            <div class="login-grid">
+              <button class="login-card student-login" type="button" data-login-role="student">
+                <span class="card-icon" aria-hidden="true">👧</span>
+                <strong>Student Login</strong>
+                <small>Daily routine, feelings, and calm support</small>
+              </button>
+              <button class="login-card teacher-login" type="button" data-login-role="teacher">
+                <span class="card-icon" aria-hidden="true">👩‍🏫</span>
+                <strong>Teacher / Caregiver Login</strong>
+                <small>Dashboard, responses, and student alerts</small>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section id="home" class="screen" aria-labelledby="home-title">
+          <div class="home-hero">
+            <div>
+              <p class="welcome">Good Morning, Amir</p>
+              <h2 id="home-title">Today: NASOM Learning Day</h2>
+              <p class="home-note">Big choices. Clear routine. Calm support.</p>
+            </div>
+            <div class="sun-card" aria-hidden="true">
+              <span>☀️</span>
+            </div>
+          </div>
+
+          <div class="quick-actions">
+            <button class="action-card blue" data-screen-target="routine">
+              <span class="card-icon" aria-hidden="true">🧭</span>
+              <span>Start Routine</span>
+            </button>
+            <button class="action-card pink" data-screen-target="feelings">
+              <span class="card-icon" aria-hidden="true">😊</span>
+              <span>How I Feel</span>
+            </button>
+            <button class="action-card yellow" data-screen-target="help">
+              <span class="card-icon" aria-hidden="true">🤝</span>
+              <span>I Need Help</span>
+            </button>
+          </div>
+        </section>
+
+        <section id="routine" class="screen" aria-labelledby="routine-title">
+          <div class="screen-heading">
+            <div>
+              <p class="eyebrow">Visual schedule</p>
+              <div class="title-row">
+                <h2 id="routine-title">My Daily Routine</h2>
+              </div>
+            </div>
+            <p class="helper-text">Follow one activity at a time.</p>
+          </div>
+
+          <div class="routine-progress-card">
+            <div>
+              <p class="eyebrow">Today Progress</p>
+              <h3 id="routine-progress-label">Activity 1 of 6</h3>
+              <p id="current-activity-label">Now: Arrive</p>
+            </div>
+            <div class="progress-track" aria-hidden="true">
+              <span id="progress-fill"></span>
+            </div>
+          </div>
+
+          <div id="routine-grid" class="routine-grid" aria-live="polite"></div>
+
+          <div class="button-row">
+            <button id="next-activity" class="primary-button">Next Activity</button>
+          </div>
+        </section>
+
+        <section id="change" class="screen" aria-labelledby="change-title">
+          <div class="change-layout">
+            <div class="alert-panel">
+              <p class="eyebrow">Schedule update</p>
+              <div class="title-row">
+                <h2 id="change-title">Schedule Change Alert</h2>
+              </div>
+              <p class="large-message">Today&rsquo;s routine changed. Therapy will happen before meal time.</p>
+              <div class="change-legend" aria-label="Change color guide">
+                <span class="legend-old"></span>
+                Old routine
+                <span class="legend-new"></span>
+                New routine
+              </div>
+              <p class="reassurance">It is okay. You can do it.</p>
+            </div>
+
+            <div class="comparison-grid">
+              <article class="comparison-card old">
+                <p>Old Routine</p>
+                <div class="sequence">
+                  <span>🍽️ Meal</span>
+                  <strong aria-hidden="true">→</strong>
+                  <span>🧩 Therapy</span>
+                </div>
+              </article>
+              <article class="comparison-card new">
+                <p>New Routine</p>
+                <div class="sequence">
+                  <span>🧩 Therapy</span>
+                  <strong aria-hidden="true">→</strong>
+                  <span>🍽️ Meal</span>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="button-row">
+            <button id="schedule-understand-button" class="primary-button" type="button">I Understand</button>
+            <button id="schedule-confused-button" class="secondary-button" type="button">I Feel Confused</button>
+          </div>
+        </section>
+
+        <section id="feelings" class="screen" aria-labelledby="feelings-title">
+          <div class="screen-heading">
+            <div>
+              <p class="eyebrow">Emotion communication</p>
+              <div class="title-row">
+                <h2 id="feelings-title">How Do You Feel?</h2>
+              </div>
+            </div>
+            <p class="helper-text">Tap one card to tell your teacher.</p>
+          </div>
+
+          <div id="emotion-grid" class="emotion-grid"></div>
+
+          <div class="response-panel" aria-live="polite">
+            <p id="emotion-response">No emotion selected yet.</p>
+            <button id="calm-link" class="primary-button hidden" data-screen-target="help">
+              Go to Calm Support
+            </button>
+          </div>
+        </section>
+
+        <section id="help" class="screen" aria-labelledby="help-title">
+          <div class="screen-heading">
+            <div>
+              <p class="eyebrow">Calm support</p>
+              <div class="title-row">
+                <h2 id="help-title">Calm Support</h2>
+              </div>
+            </div>
+            <p class="helper-text">Tap the button to call your teacher or caregiver.</p>
+          </div>
+
+          <div class="support-grid single-action">
+            <button class="support-card" data-support="teacher">
+              <span aria-hidden="true">👩‍🏫</span>
+              Ask Teacher / Caregiver
+            </button>
+          </div>
+
+          <div id="support-feedback" class="calm-panel" aria-live="polite">
+            Teacher / caregiver will be notified when you tap the button.
+          </div>
+        </section>
+
+        <section id="teacher" class="screen" aria-labelledby="teacher-title">
+          <div class="teacher-layout">
+            <div class="teacher-main-panel">
+              <div class="screen-heading compact">
+                <div>
+                  <p class="eyebrow">Teacher account</p>
+                  <h2 id="teacher-title">Teacher / Caregiver Dashboard</h2>
+                </div>
+                <p class="helper-text">Monitor student routine status, feelings, and support requests.</p>
+              </div>
+
+              <p class="section-label">Student overview</p>
+              <div class="dashboard-summary">
+                <article class="student-card active-student">
+                  <span aria-hidden="true">👤</span>
+                  <div>
+                    <strong>Amir</strong>
+                    <p id="dashboard-current-activity">Arrive</p>
+                    <small>
+                      Feeling: <b id="dashboard-latest-feeling">None</b>
+                      Help: <b id="dashboard-help-status">No</b>
+                    </small>
+                  </div>
+                </article>
+                <article class="student-card">
+                  <span aria-hidden="true">👧</span>
+                  <div>
+                    <strong>Siti</strong>
+                    <p>Learning activity</p>
+                    <small>Feeling: Happy | Help: No</small>
+                  </div>
+                </article>
+                <article class="student-card">
+                  <span aria-hidden="true">👦</span>
+                  <div>
+                    <strong>Hakim</strong>
+                    <p>Meal time</p>
+                    <small>Feeling: Tired | Help: No</small>
+                  </div>
+                </article>
+                <article class="student-card">
+                  <span aria-hidden="true">👧</span>
+                  <div>
+                    <strong>Mei Lin</strong>
+                    <p>Therapy session</p>
+                    <small>Feeling: Calm | Help: No</small>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <aside class="dashboard-side">
+              <article class="student-response">
+                <p class="eyebrow">Latest student response</p>
+                <h3 id="latest-response">Amir selected: I Need Help</h3>
+                <p class="response-note">Demo preview of how a student response appears to the teacher.</p>
+              </article>
+
+              <article class="teacher-alert">
+                <p class="eyebrow">Teacher notification</p>
+                <h3 id="teacher-notification-title">Help request</h3>
+                <p id="teacher-notification-detail">Amir asked for teacher / caregiver support. Time: 10:05 AM</p>
+              </article>
+
+              <article class="response-list-card">
+                <p class="eyebrow">Student responses</p>
+                <div class="response-list">
+                  <div class="response-row urgent">
+                    <span>Amir</span>
+                    <strong>I Need Help</strong>
+                    <small>10:05 AM</small>
+                  </div>
+                  <div class="response-row">
+                    <span>Siti</span>
+                    <strong>Happy</strong>
+                    <small>9:50 AM</small>
+                  </div>
+                  <div class="response-row">
+                    <span>Hakim</span>
+                    <strong>Tired</strong>
+                    <small>9:42 AM</small>
+                  </div>
+                  <div class="response-row calm">
+                    <span>Mei Lin</span>
+                    <strong>Calm</strong>
+                    <small>9:30 AM</small>
+                  </div>
+                </div>
+              </article>
+            </aside>
+          </div>
+        </section>
+
+        <section id="notification" class="screen" aria-labelledby="notification-title">
+          <div class="screen-heading">
+            <div>
+              <p class="eyebrow">Teacher alert centre</p>
+              <h2 id="notification-title">Student Notification</h2>
+            </div>
+            <p class="helper-text">Latest student feeling and help requests appear here.</p>
+          </div>
+
+          <div class="notification-layout">
+            <article class="student-response">
+              <p class="eyebrow">Latest student response</p>
+              <h3 id="notification-latest-response">Amir selected: I Need Help</h3>
+            </article>
+
+            <article class="teacher-alert notification-alert">
+              <p class="eyebrow">Teacher notification</p>
+              <h3 id="notification-title-text">Help request</h3>
+              <p id="notification-detail-text">Amir asked for teacher / caregiver support. Time: 10:05 AM</p>
+              <div class="notification-actions">
+                <button id="mark-seen-button" class="secondary-button" type="button">Mark as Seen</button>
+                <span id="notification-seen-status">Waiting for student action.</span>
+              </div>
+            </article>
+
+            <article class="sample-notifications">
+              <p class="eyebrow">Notification history</p>
+              <div id="notification-history-list" class="notification-history-list" aria-live="polite">
+                <p class="empty-history">No notifications yet.</p>
+              </div>
+
+              <p class="eyebrow">Student alerts</p>
+              <div class="sample-alert-card urgent">
+                <strong>Help request</strong>
+                <span>Amir tapped Ask Teacher / Caregiver.</span>
+                <small>Action: Go to Amir and provide support.</small>
+              </div>
+              <div class="sample-alert-card">
+                <strong>Feeling selected</strong>
+                <span>Siti selected: Sad.</span>
+                <small>Action: Check in with Siti using simple words.</small>
+              </div>
+              <div class="sample-alert-card calm">
+                <strong>Feeling selected</strong>
+                <span>Mei Lin selected: Happy.</span>
+                <small>Action: Continue current activity.</small>
+              </div>
+              <div class="sample-alert-card">
+                <strong>Break request</strong>
+                <span>Hakim selected: I Need a Break.</span>
+                <small>Action: Offer a quiet support space.</small>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <nav class="bottom-nav hidden" aria-label="Main navigation">
+        <button class="nav-button active-nav" data-role-nav="student" data-screen-target="home">
+          <span aria-hidden="true">🏠</span>
+          Home
+        </button>
+        <button class="nav-button" data-role-nav="student" data-screen-target="routine">
+          <span aria-hidden="true">🧭</span>
+          Routine
+        </button>
+        <button class="nav-button" data-role-nav="student" data-screen-target="feelings">
+          <span aria-hidden="true">😊</span>
+          Feelings
+        </button>
+        <button class="nav-button" data-role-nav="student" data-screen-target="help">
+          <span aria-hidden="true">🤝</span>
+          Help
+        </button>
+        <button class="nav-button" data-role-nav="teacher" data-screen-target="teacher">
+          <span aria-hidden="true">📋</span>
+          Dashboard
+        </button>
+        <button class="nav-button" data-role-nav="teacher" data-screen-target="notification">
+          <span class="nav-icon-wrap" aria-hidden="true">
+            🔔
+            <small id="notification-badge" class="nav-badge hidden">0</small>
+          </span>
+          Student Notification
+        </button>
+      </nav>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
